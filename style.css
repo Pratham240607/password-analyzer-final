@@ -1,0 +1,272 @@
+/* --- Color Variables --- */
+:root {
+    --main-bg-color: #0d1117; /* Deep Black/Dark Gray */
+    --container-bg-color: #161b22; /* Slightly Lighter Black/Dark Gray */
+    --primary-blue: #58a6ff; /* A bright, cool blue */
+    --text-color: #c9d1d9; /* Off-white text */
+    --border-color: #30363d;
+    --section-gap: 40px; /* Defines standard vertical space between sections */
+}
+
+/* --- Base Body and Container Styles --- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--main-bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    transition: background-color 0.5s;
+}
+
+.container {
+    background-color: var(--container-bg-color);
+    padding: 40px 50px; 
+    border-radius: 16px; 
+    box-shadow: 0 0 40px rgba(88, 166, 255, 0.25); 
+    width: 100%;
+    max-width: 550px; 
+    text-align: center;
+    border: 1px solid var(--border-color);
+    opacity: 0; 
+    transition: opacity 1s ease-in;
+    display: none; 
+    
+    /* FIX: Ensure content stacks vertically */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Ensure the main analyzer is displayed correctly when visible */
+#mainAnalyzer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+h1 {
+    color: var(--primary-blue);
+    margin-bottom: 20px;
+    font-size: 2.2em;
+}
+
+/* --- Input Field and Toggle Button --- */
+.input-group {
+    display: flex;
+    width: 100%; 
+    margin: 30px 0;
+    border: 2px solid var(--border-color); 
+    border-radius: 10px;
+    overflow: hidden; 
+}
+
+#passwordInput {
+    flex-grow: 1; 
+    padding: 14px 18px; 
+    border: none;
+    background-color: #21262d; 
+    color: var(--text-color);
+    font-size: 1.1em;
+    outline: none;
+}
+
+.toggle-btn {
+    background-color: #21262d; 
+    color: var(--primary-blue);
+    border: none;
+    padding: 0 18px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.toggle-btn:hover {
+    background-color: #2a3036;
+}
+
+/* --- Strength Bar Styling --- */
+.strength-bar {
+    height: 12px; 
+    background-color: #30363d;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    transition: width 0.3s ease-in-out, background-color 0.3s;
+    width: 0%; 
+    align-self: stretch; /* Ensure it stretches across the container */
+}
+
+.weak { background-color: #ff4d4d; width: 33%; }
+.medium { background-color: #ffc107; width: 66%; }
+.strong { background-color: #4CAF50; width: 100%; }
+
+/* Feedback Text */
+.feedback-text {
+    font-size: 1.1em;
+    font-weight: 500;
+    color: var(--text-color);
+    min-height: 40px; 
+    text-align: center;
+    width: 100%; /* Ensure it uses full width */
+}
+
+/* --- Buttons --- */
+#analyzeButton, #restartButton, #suggestButton {
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s, opacity 0.3s;
+    margin-top: 25px;
+    border: none;
+    cursor: pointer;
+}
+
+#analyzeButton {
+    background-color: var(--primary-blue);
+    color: var(--main-bg-color);
+}
+
+#analyzeButton:hover:not(:disabled) {
+    background-color: #79c0ff;
+}
+
+#analyzeButton:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* --- ANIMATION STYLES --- */
+#splash-screen, #animationScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--main-bg-color);
+    display: none; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: opacity 1s ease-out; 
+}
+
+#splash-screen h2, #animationScreen h2 {
+    color: var(--primary-blue);
+    font-size: 2em;
+    animation: pulse 1.5s infinite; 
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(88, 166, 255, 0.3); 
+    border-top: 5px solid var(--primary-blue); 
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-top: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+    0% { opacity: 0.8; }
+    50% { opacity: 1; }
+    100% { opacity: 0.8; }
+}
+
+
+.large-spinner {
+    width: 80px;
+    height: 80px;
+    border-width: 8px;
+}
+
+/* --- RESULTS SCREEN STYLES (Focused on Spacing and Clarity) --- */
+
+.results-container {
+    padding-top: 15px; 
+}
+
+/* Section Headings */
+.results-container h2 {
+    color: var(--primary-blue);
+    margin-top: var(--section-gap); 
+    margin-bottom: 15px;
+    font-size: 1.8em;
+    width: 100%; /* Ensure headings use full width */
+}
+
+/* Separator Line */
+hr {
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), var(--primary-blue), rgba(0, 0, 0, 0));
+    margin: 30px 0; 
+    width: 100%; /* Ensure HR uses full width */
+}
+
+/* Larger elements for the final results display */
+.large-strength {
+    height: 18px; 
+    margin: 0 auto;
+    width: 90%; 
+}
+
+.large-feedback {
+    font-size: 1.5em;
+    margin-top: 15px;
+    margin-bottom: 25px;
+    font-weight: 600;
+    color: var(--text-color);
+    text-align: center;
+    line-height: 1.4; /* Better readability */
+    width: 100%;
+}
+
+.large-crack-time {
+    font-size: 2.2em; 
+    font-weight: bold;
+    color: #4CAF50; 
+    margin: 10px 0 20px 0; 
+    width: 100%;
+}
+
+/* FIX: Styling the Suggestion box and Button */
+.suggested-output {
+    margin-top: 15px;
+    padding: 12px;
+    background-color: #21262d; /* Dark background */
+    border-radius: 8px;
+    word-break: break-all;
+    font-family: monospace;
+    border: 1px dashed var(--primary-blue);
+    font-size: 1.1em;
+    /* FIX: Ensuring it uses the full available width */
+    width: 100%; 
+    box-sizing: border-box; /* Include padding in width calculation */
+}
+
+#suggestButton {
+    /* FIX: Making the button blue/black again */
+    background-color: var(--primary-blue);
+    color: var(--main-bg-color);
+}
+
+#restartButton {
+    background-color: #555;
+    margin-top: var(--section-gap);
+    margin-bottom: 10px;
+}
+
+#restartButton:hover {
+    background-color: #777;
+}

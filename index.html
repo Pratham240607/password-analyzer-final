@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Strength Analyzer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="splash-screen">
+        <h2>Initializing Analyzer...</h2>
+        <div class="spinner"></div>
+    </div>
+    
+    <div class="container" id="mainAnalyzer">
+        <h1>🔒 Password Strength Analyzer</h1>
+        <p>Enter a password below to check its strength and estimated break time.</p>
+
+        <div class="input-group">
+            <input type="password" id="passwordInput" placeholder="Enter your password here">
+            <button id="togglePassword" class="toggle-btn">SHOW</button>
+        </div>
+        
+        <div id="strengthIndicator" class="strength-bar"></div>
+        <p class="feedback-text" id="feedbackText">Start typing to see the analysis.</p>
+
+        <button id="analyzeButton" disabled>ANALYZE PASSWORD</button>
+    </div>
+
+    <div id="animationScreen" class="full-page-screen">
+        <h2>Analyzing Security Profile...</h2>
+        <div class="spinner large-spinner"></div> 
+    </div>
+
+    <div id="resultsScreen" class="container results-container">
+        <h1>✅ Analysis Complete</h1>
+        
+        <h2>🛡️ Password Strength</h2>
+        <div id="finalStrengthIndicator" class="strength-bar large-strength"></div>
+        <p class="feedback-text large-feedback" id="finalFeedbackText"></p>
+        
+        <hr> <h2>⏳ Estimated Crack Time</h2>
+        <p id="finalBreakTime" class="crack-time large-crack-time"></p>
+        
+        <hr> <h2>💡 Suggestions</h2>
+        <button id="suggestButton">Generate a Strong Password</button>
+        <p id="suggestedPassword" class="suggested-output"></p>
+
+        <button id="restartButton">Analyze Another Password</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
